@@ -86,12 +86,13 @@ $FFMPEG -f concat -i <(yes "file '${WRK_DIR}/build/grain.mp4'" | head -n 1000) -
     -an -vf "scale=${SIZE}" -f mp4 -r ${FRAMERATE} -vcodec libx264 -pix_fmt yuv420p "build/grain-ext.mp4"
 
 # Encoding source video
+# https://ffmpeg.org/ffmpeg-filters.html
 
 $FFMPEG \
     -y \
     -i "${SRC_FILE}" \
     -an \
-    -vf "colorchannelmixer=.3:.4:.3:0:.3:.4:.3:0:.3:.4:.3, setpts=${PTS_RATIO}*PTS, noise=alls=30:allf=t+u, scale=${SIZE}" \
+    -vf "curves=preset=vintage, noise=alls=30:allf=t+u, colorchannelmixer=.3:.4:.3:0:.3:.4:.3:0:.3:.4:.3, setpts=${PTS_RATIO}*PTS, scale=${SIZE}" \
     -t ${DURATION} \
     -r ${FRAMERATE} \
     -f mp4 \
@@ -100,7 +101,6 @@ $FFMPEG \
     "build/video.mp4"
 
 # Mix video with overlay
-# https://ffmpeg.org/ffmpeg-filters.html
 
 FADEOUT_S=$(( (DURATION - 2) * FRAMERATE))
 FADEOUT_D=$(( 2 * FRAMERATE ))
