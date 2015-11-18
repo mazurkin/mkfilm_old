@@ -43,7 +43,7 @@ DURATION=${2:-}
 
 if [[ -z ${SRC_FILE} || -z ${DURATION} ]]
 then
-    echo "Usage: oldfilm VIDEO_FILE DURATION_SECS"
+    echo "Usage: mkfilm_old VIDEO_FILE DURATION_SECS"
     exit -1
 fi
 
