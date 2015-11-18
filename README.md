@@ -5,9 +5,9 @@ Some files from YouTube are downloaded during a process.
 
 # Usage
 
-'''
+```
 oldfilm MOVIEFILE DURATION_SECS
-'''
+```
 
 Note that script speeds up the source video in x2 times (PTS_RATIO=0.5). So the specified duration
 must be twice less than in the source video.
