@@ -109,12 +109,15 @@ $FFMPEG \
     -i "build/video.mp4" \
     -i "build/grain-ext.mp4" \
     -i "build/audio.wav" \
-    -filter_complex "[1:v][0:v]blend=all_mode='hardlight', fade=type=out:start_frame=${FADEOUT_S}:nb_frames=${FADEOUT_D}[blended]" \
-    -map "[blended]:v" -map "2:a" \
+    -filter_complex "[1:v][0:v]blend=all_mode='hardlight', fade=type=out:start_frame=${FADEOUT_S}:nb_frames=${FADEOUT_D}[out]" \
+    -map "[out]:v" -map "2:a" \
     -t ${DURATION} \
     -r ${FRAMERATE} \
     -f mp4 \
     -acodec mp3 \
+    -ac 1 \
+    -b:a 128k \
+    -b:v 1m \
     -vcodec libx264 \
     -pix_fmt yuv420p \
     "output.mp4"
