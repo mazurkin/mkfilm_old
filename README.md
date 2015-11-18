@@ -5,9 +5,9 @@ Some files from YouTube are downloaded during a process.
 
 # Usage
 
-'''
+```
 mkfile_old MOVIEFILE DURATION_SECS
-'''
+```
 
 Note that the script speeds up the source video x2 times (if PTS_RATIO=0.5). So the specified duration
 must be twice less than the length of the source video.
